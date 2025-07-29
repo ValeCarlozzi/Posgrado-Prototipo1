@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Demo App{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<body>
+    <nav>
+        <a href="{{ path('alumno_index') }}">Alumnos</a>
+        <!-- Puedes agregar más enlaces aquí para otras entidades -->
+    </nav>
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+</body>
+</html> 

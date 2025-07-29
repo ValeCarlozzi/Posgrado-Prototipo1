@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de Carreras{% endblock %}
+
+{% block body %}
+    <h1>Listado de Carreras</h1>
+    <a href="{{ path('carrera_new') }}">Nueva Carrera</a>
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Ordenanza</th>
+                <th>Resolución</th>
+                <th>CONEAU</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for carrera in carreras %}
+            <tr>
+                <td>{{ carrera.id }}</td>
+                <td>{{ carrera.nombre }}</td>
+                <td>{{ carrera.ordenanzaAprobacion }}</td>
+                <td>{{ carrera.resolucionImplementacion }}</td>
+                <td>{{ carrera.coneaAprobacion }}</td>
+                <td>
+                    <a href="{{ path('carrera_show', {'id': carrera.id}) }}">Ver</a> |
+                    <a href="{{ path('carrera_edit', {'id': carrera.id}) }}">Editar</a> |
+                    <form method="post" action="{{ path('carrera_delete', {'id': carrera.id}) }}" style="display:inline" onsubmit="return confirm('¿Seguro que deseas eliminar esta carrera?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ carrera.id) }}">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="6">No hay carreras registradas.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('alumno_index') }}">Volver a Alumnos</a>
+{% endblock %} 

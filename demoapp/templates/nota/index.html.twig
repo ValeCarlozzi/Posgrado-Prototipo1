@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de Notas{% endblock %}
+
+{% block body %}
+    <h1>Listado de Notas</h1>
+    <a href="{{ path('nota_new') }}">Nueva Nota</a>
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Alumno</th>
+                <th>Dictado</th>
+                <th>Nota</th>
+                <th>Documento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for nota in notas %}
+            <tr>
+                <td>{{ nota.id }}</td>
+                <td>{{ nota.alumno ? nota.alumno.nombre ~ ' ' ~ nota.alumno.apellido : '' }}</td>
+                <td>{{ nota.dictado ? (nota.dictado.curso ? nota.dictado.curso.nombre : '') : '' }}</td>
+                <td>{{ nota.valor }}</td>
+                <td>{{ nota.documento }}</td>
+                <td>
+                    <a href="{{ path('nota_show', {'id': nota.id}) }}">Ver</a> |
+                    <a href="{{ path('nota_edit', {'id': nota.id}) }}">Editar</a> |
+                    <form method="post" action="{{ path('nota_delete', {'id': nota.id}) }}" style="display:inline" onsubmit="return confirm('¿Seguro que deseas eliminar esta nota?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ nota.id) }}">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="6">No hay notas registradas.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('alumno_index') }}">Volver a Alumnos</a>
+{% endblock %} 

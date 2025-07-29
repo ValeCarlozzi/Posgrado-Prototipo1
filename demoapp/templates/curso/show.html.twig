@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detalle de Curso{% endblock %}
+
+{% block body %}
+    <h1>Detalle de Curso</h1>
+    <ul>
+        <li><strong>ID:</strong> {{ curso.id }}</li>
+        <li><strong>Nombre:</strong> {{ curso.nombre }}</li>
+        <li><strong>Horas:</strong> {{ curso.horas }}</li>
+        <li><strong>Optativo:</strong> {{ curso.esOptativo ? 'Sí' : 'No' }}</li>
+    </ul>
+    <a href="{{ path('curso_edit', {'id': curso.id}) }}">Editar</a> |
+    <a href="{{ path('curso_index') }}">Volver al listado</a>
+{% endblock %} 

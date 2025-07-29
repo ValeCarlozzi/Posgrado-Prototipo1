@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detalle de Alumno{% endblock %}
+
+{% block body %}
+    <h1>Detalle de Alumno</h1>
+    <ul>
+        <li><strong>ID:</strong> {{ alumno.id }}</li>
+        <li><strong>Nombre:</strong> {{ alumno.nombre }}</li>
+        <li><strong>Apellido:</strong> {{ alumno.apellido }}</li>
+        <li><strong>Email:</strong> {{ alumno.email }}</li>
+        <li><strong>DNI:</strong> {{ alumno.dni }}</li>
+        <li><strong>CUIL:</strong> {{ alumno.cuil }}</li>
+    </ul>
+    <a href="{{ path('alumno_edit', {'id': alumno.id}) }}">Editar</a> |
+    <a href="{{ path('alumno_index') }}">Volver al listado</a>
+{% endblock %} 

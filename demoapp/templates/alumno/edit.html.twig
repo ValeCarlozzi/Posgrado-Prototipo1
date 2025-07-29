@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Alumno{% endblock %}
+
+{% block body %}
+    <h1>Editar Alumno</h1>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn">Guardar cambios</button>
+    {{ form_end(form) }}
+    <a href="{{ path('alumno_index') }}">Volver al listado</a>
+{% endblock %} 

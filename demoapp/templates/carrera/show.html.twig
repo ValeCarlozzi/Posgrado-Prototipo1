@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detalle de Carrera{% endblock %}
+
+{% block body %}
+    <h1>Detalle de Carrera</h1>
+    <ul>
+        <li><strong>ID:</strong> {{ carrera.id }}</li>
+        <li><strong>Nombre:</strong> {{ carrera.nombre }}</li>
+        <li><strong>Ordenanza:</strong> {{ carrera.ordenanzaAprobacion }}</li>
+        <li><strong>Resolución:</strong> {{ carrera.resolucionImplementacion }}</li>
+        <li><strong>CONEAU:</strong> {{ carrera.coneaAprobacion }}</li>
+    </ul>
+    <a href="{{ path('carrera_edit', {'id': carrera.id}) }}">Editar</a> |
+    <a href="{{ path('carrera_index') }}">Volver al listado</a>
+{% endblock %} 

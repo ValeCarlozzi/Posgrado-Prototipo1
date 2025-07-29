@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de Cursos{% endblock %}
+
+{% block body %}
+    <h1>Listado de Cursos</h1>
+    <a href="{{ path('curso_new') }}">Nuevo Curso</a>
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Horas</th>
+                <th>Optativo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for curso in cursos %}
+            <tr>
+                <td>{{ curso.id }}</td>
+                <td>{{ curso.nombre }}</td>
+                <td>{{ curso.horas }}</td>
+                <td>{{ curso.esOptativo ? 'Sí' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('curso_show', {'id': curso.id}) }}">Ver</a> |
+                    <a href="{{ path('curso_edit', {'id': curso.id}) }}">Editar</a> |
+                    <form method="post" action="{{ path('curso_delete', {'id': curso.id}) }}" style="display:inline" onsubmit="return confirm('¿Seguro que deseas eliminar este curso?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ curso.id) }}">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="5">No hay cursos registrados.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('alumno_index') }}">Volver a Alumnos</a>
+{% endblock %} 

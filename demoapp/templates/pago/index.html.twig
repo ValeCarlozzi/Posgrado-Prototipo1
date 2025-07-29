@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de Pagos{% endblock %}
+
+{% block body %}
+    <h1>Listado de Pagos</h1>
+    <a href="{{ path('pago_new') }}">Nuevo Pago</a>
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Alumno</th>
+                <th>CUIL</th>
+                <th>Fecha Pago</th>
+                <th>N° Cuota</th>
+                <th>Comprobante</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pago in pagos %}
+            <tr>
+                <td>{{ pago.id }}</td>
+                <td>{{ pago.alumno ? pago.alumno.nombre ~ ' ' ~ pago.alumno.apellido : '' }}</td>
+                <td>{{ pago.cuil }}</td>
+                <td>{{ pago.fechaPago ? pago.fechaPago|date('Y-m-d') : '' }}</td>
+                <td>{{ pago.numeroCuota }}</td>
+                <td>{{ pago.comprobante }}</td>
+                <td>
+                    <a href="{{ path('pago_show', {'id': pago.id}) }}">Ver</a> |
+                    <a href="{{ path('pago_edit', {'id': pago.id}) }}">Editar</a> |
+                    <form method="post" action="{{ path('pago_delete', {'id': pago.id}) }}" style="display:inline" onsubmit="return confirm('¿Seguro que deseas eliminar este pago?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pago.id) }}">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="7">No hay pagos registrados.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('alumno_index') }}">Volver a Alumnos</a>
+{% endblock %} 

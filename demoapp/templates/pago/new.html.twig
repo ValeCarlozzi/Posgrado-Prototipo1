@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Pago{% endblock %}
+
+{% block body %}
+    <h1>Nuevo Pago</h1>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn">Guardar</button>
+    {{ form_end(form) }}
+    <a href="{{ path('pago_index') }}">Volver al listado</a>
+{% endblock %} 

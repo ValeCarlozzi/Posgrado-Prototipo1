@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detalle de Dictado de Curso{% endblock %}
+
+{% block body %}
+    <h1>Detalle de Dictado de Curso</h1>
+    <ul>
+        <li><strong>ID:</strong> {{ dictado.id }}</li>
+        <li><strong>Curso:</strong> {{ dictado.curso ? dictado.curso.nombre : '' }}</li>
+        <li><strong>Fecha Inicio:</strong> {{ dictado.fechaInicio ? dictado.fechaInicio|date('Y-m-d') : '' }}</li>
+        <li><strong>Fecha Fin:</strong> {{ dictado.fechaFin ? dictado.fechaFin|date('Y-m-d') : '' }}</li>
+    </ul>
+    <a href="{{ path('dictado_edit', {'id': dictado.id}) }}">Editar</a> |
+    <a href="{{ path('dictado_index') }}">Volver al listado</a>
+{% endblock %} 

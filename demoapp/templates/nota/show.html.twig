@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detalle de Nota{% endblock %}
+
+{% block body %}
+    <h1>Detalle de Nota</h1>
+    <ul>
+        <li><strong>ID:</strong> {{ nota.id }}</li>
+        <li><strong>Alumno:</strong> {{ nota.alumno ? nota.alumno.nombre ~ ' ' ~ nota.alumno.apellido : '' }}</li>
+        <li><strong>Dictado:</strong> {{ nota.dictado ? (nota.dictado.curso ? nota.dictado.curso.nombre : '') : '' }}</li>
+        <li><strong>Nota:</strong> {{ nota.valor }}</li>
+        <li><strong>Documento:</strong> {{ nota.documento }}</li>
+    </ul>
+    <a href="{{ path('nota_edit', {'id': nota.id}) }}">Editar</a> |
+    <a href="{{ path('nota_index') }}">Volver al listado</a>
+{% endblock %} 

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detalle de Pago{% endblock %}
+
+{% block body %}
+    <h1>Detalle de Pago</h1>
+    <ul>
+        <li><strong>ID:</strong> {{ pago.id }}</li>
+        <li><strong>Alumno:</strong> {{ pago.alumno ? pago.alumno.nombre ~ ' ' ~ pago.alumno.apellido : '' }}</li>
+        <li><strong>CUIL:</strong> {{ pago.cuil }}</li>
+        <li><strong>Fecha Pago:</strong> {{ pago.fechaPago ? pago.fechaPago|date('Y-m-d') : '' }}</li>
+        <li><strong>N° Cuota:</strong> {{ pago.numeroCuota }}</li>
+        <li><strong>Comprobante:</strong> {{ pago.comprobante }}</li>
+    </ul>
+    <a href="{{ path('pago_edit', {'id': pago.id}) }}">Editar</a> |
+    <a href="{{ path('pago_index') }}">Volver al listado</a>
+{% endblock %} 
